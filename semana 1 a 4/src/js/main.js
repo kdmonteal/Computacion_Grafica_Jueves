@@ -19,6 +19,7 @@ function start3dService() {
     initScene();        // To inicializate the project
     createGeometries();
     animate();          // To represent frame by frame (Update)...
+    window.addEventListener( 'resize', onWindowResize, false );
 }
 
 function initScene() {
@@ -73,5 +74,12 @@ function animate() {
 	renderer.render( scene, camera );
 }
 
+function onWindowResize(){
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
+}
 
 console.log(THREE);
