@@ -34,6 +34,11 @@ function initScene() {
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 
+    // To make Controls
+    controls = new THREE.OrbitControls(camera,renderer.domElement);
+    camera.position.set(0,0,0);
+    controls.update();
+
     // Create Grid
     const size = 10;
     const divisions = 10;
@@ -68,7 +73,8 @@ function createGeometries() {
 
 function animate() {
 	requestAnimationFrame( animate );
-
+    controls.update();
+    
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
 
