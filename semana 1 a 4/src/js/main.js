@@ -11,7 +11,8 @@ var scene = null,    // The place
     
     // Geometry to move or animate (rotate)
     cube = null,
-    cone = null;     
+    cone = null,
+    cylinder = null;     
 
 // Call all functions that allow create 3D
 function start3dService() {
@@ -35,16 +36,25 @@ function initScene() {
 
 function createGeometries() {
     const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 ,
+                                                    wireframe: true} );
     cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
 
     const geometryCone = new THREE.ConeGeometry(1, 3, 10 );
-    const materialCone = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+    const materialCone = new THREE.MeshBasicMaterial( {color: 0xffff00,
+                                                    wireframe: true} );
     cone = new THREE.Mesh( geometryCone, materialCone );
     scene.add( cone );
 
+    const geometryCylinder = new THREE.CylinderGeometry( 1, 1, 3, 10 );
+    const materialCylinder = new THREE.MeshBasicMaterial( {color: 0xf0f0ff,
+                                                    wireframe: true} );
+    cylinder = new THREE.Mesh( geometryCylinder, materialCylinder );
+    scene.add( cylinder );
+
     cone.position.x = 3;
+    cylinder.position.x = -3;
     camera.position.z = 5;
 }
 
@@ -56,6 +66,9 @@ function animate() {
 
     cone.rotation.x += 0.01;
     cone.rotation.y += 0.01;
+
+    cylinder.rotation.x += 0.01;
+    cylinder.rotation.y += 0.01;
 
 	renderer.render( scene, camera );
 }
