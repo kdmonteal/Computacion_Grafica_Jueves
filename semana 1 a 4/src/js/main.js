@@ -24,6 +24,7 @@ function start3dService() {
 
 function initScene() {
     scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x6378FF);
     camera = new THREE.PerspectiveCamera( 75,   // FOV (Fild of view)
                                         window.innerWidth / window.innerHeight, // ASPECT (Size of Screen)
                                         0.1,  // NEAR (Cerca)
@@ -43,8 +44,15 @@ function initScene() {
     const size = 10;
     const divisions = 10;
 
-    const gridHelper = new THREE.GridHelper( size, divisions );
+    const gridHelper = new THREE.GridHelper( size, 
+                                             divisions, 
+                                             0x000,      // Color Cruz 
+                                             0xffffff ); // Color de las cuadriculas
     scene.add( gridHelper );
+
+    // Axes Helper
+    const axesHelper = new THREE.AxesHelper( 5 );
+    scene.add( axesHelper );
 }
 
 function createGeometries() {
@@ -74,7 +82,7 @@ function createGeometries() {
 function animate() {
 	requestAnimationFrame( animate );
     controls.update();
-    
+
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
 
