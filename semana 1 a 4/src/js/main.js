@@ -17,7 +17,7 @@ var scene = null,    // The place
 // Call all functions that allow create 3D
 function start3dService() {
     initScene();        // To inicializate the project
-    createGeometries();
+    //createGeometries();
     animate();          // To represent frame by frame (Update)...
     window.addEventListener( 'resize', onWindowResize, false );
 }
@@ -37,7 +37,7 @@ function initScene() {
 
     // To make Controls
     controls = new THREE.OrbitControls(camera,renderer.domElement);
-    camera.position.set(0,0,0);
+    camera.position.set(2,4,2);
     controls.update();
 
     // Create Grid
@@ -76,22 +76,21 @@ function createGeometries() {
 
     cone.position.x = 3;
     cylinder.position.x = -3;
-    camera.position.z = 5;
 }
 
 function animate() {
 	requestAnimationFrame( animate );
     controls.update();
 
-    cube.rotation.x += 0.01;
+    /*cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
 
     cone.rotation.x += 0.01;
     cone.rotation.y += 0.01;
 
     cylinder.rotation.x += 0.01;
-    cylinder.rotation.y += 0.01;
-
+    cylinder.rotation.y += 0.01;*/
+    
 	renderer.render( scene, camera );
 }
 
@@ -101,6 +100,14 @@ function onWindowResize(){
     camera.updateProjectionMatrix();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
 }
 
 console.log(THREE);

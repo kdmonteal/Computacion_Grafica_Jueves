@@ -24,9 +24,30 @@
 
     <div class="topnav">
         <a class="active" href="#home">Home</a>
-        <a href="">Cylinder</a>
+        <a onclick="openForm()">Cylinder</a>
         <a href="">Cube</a>
         <a href="">Cone</a>
+    </div>
+
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Cylinder</h1>
+
+            <label for="RadiusTop"><b>RadiusTop</b></label>
+            <input type="text" placeholder="10" name="RadiusTop" required>
+
+            <label for="radiusBottom"><b>radiusBottom</b></label>
+            <input type="text" placeholder="10" name="radiusBottom" required>
+
+            <label for="height"><b>height</b></label>
+            <input type="text" placeholder="10" name="height" required>
+
+            <label for="radialSegments"><b>radialSegments</b></label>
+            <input type="text" placeholder="32" name="radialSegments" required>
+
+            <button type="submit" class="btn">Create Geometry</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
     </div>
 </body>
 
