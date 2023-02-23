@@ -24,7 +24,7 @@ function start3dService() {
 
 function initScene() {
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x6378FF);
+    scene.background = new THREE.Color(0x043eaa);
     camera = new THREE.PerspectiveCamera( 75,   // FOV (Fild of view)
                                         window.innerWidth / window.innerHeight, // ASPECT (Size of Screen)
                                         0.1,  // NEAR (Cerca)
@@ -55,27 +55,31 @@ function initScene() {
     scene.add( axesHelper );
 }
 
-function createGeometries() {
-    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 ,
-                                                    wireframe: true} );
-    cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
+function createGeometries(geometries) {
 
-    const geometryCone = new THREE.ConeGeometry(1, 3, 10 );
-    const materialCone = new THREE.MeshBasicMaterial( {color: 0xffff00,
-                                                    wireframe: true} );
-    cone = new THREE.Mesh( geometryCone, materialCone );
-    scene.add( cone );
-
-    const geometryCylinder = new THREE.CylinderGeometry( 1, 1, 3, 10 );
-    const materialCylinder = new THREE.MeshBasicMaterial( {color: 0xf0f0ff,
-                                                    wireframe: true} );
-    cylinder = new THREE.Mesh( geometryCylinder, materialCylinder );
-    scene.add( cylinder );
-
-    cone.position.x = 3;
-    cylinder.position.x = -3;
+    switch(geometries) {
+        case 'Cylinder':
+            const geometryCylinder = new THREE.CylinderGeometry( 1, 1, 3, 10 );
+            const materialCylinder = new THREE.MeshBasicMaterial( {color: 0xf0f0ff,
+                                                            wireframe: true} );
+            cylinder = new THREE.Mesh( geometryCylinder, materialCylinder );
+            scene.add( cylinder );
+          break;
+        case 'Cube':
+            const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+            const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 ,
+                                                            wireframe: true} );
+            cube = new THREE.Mesh( geometry, material );
+            scene.add( cube );
+          break;
+        case 'Cone':
+            const geometryCone = new THREE.ConeGeometry(1, 3, 10 );
+            const materialCone = new THREE.MeshBasicMaterial( {color: 0xffff00,
+                                                            wireframe: true} );
+            cone = new THREE.Mesh( geometryCone, materialCone );
+            scene.add( cone );
+          break;
+      }
 }
 
 function animate() {
@@ -102,12 +106,12 @@ function onWindowResize(){
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
+function openForm(nameForm) {
+    document.getElementById(nameForm).style.display = "block";
 }
 
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+function closeForm(nameForm) {
+    document.getElementById(nameForm).style.display = "none";
 }
 
 console.log(THREE);

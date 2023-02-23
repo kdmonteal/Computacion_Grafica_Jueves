@@ -1,8 +1,5 @@
 body{
     margin: 0;
-}
-
-a{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -35,7 +32,7 @@ a{
   
   /* Add a color to the active/current link */
   .topnav a.active {
-    background-color: #04AA6D;
+    background-color: #043eaa;
     color: white;
   }
 
@@ -50,7 +47,7 @@ a{
     position: fixed;
     bottom: 23px;
     right: 28px;
-    width: 280px;
+    width: 50%;
   }
   
   /* The popup form - hidden by default */

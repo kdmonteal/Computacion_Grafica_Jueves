@@ -24,13 +24,14 @@
 
     <div class="topnav">
         <a class="active" href="#home">Home</a>
-        <a onclick="openForm()">Cylinder</a>
-        <a href="">Cube</a>
-        <a href="">Cone</a>
+        <a onclick="openForm('myForm')">Cylinder</a>
+        <a onclick="openForm('myFormCube')">Cube</a>
+        <a onclick="openForm('myFormCone')">Cone</a>
     </div>
 
+    <!-- Cylinder -->
     <div class="form-popup" id="myForm">
-        <form action="/action_page.php" class="form-container">
+        <form action="" class="form-container">
             <h1>Cylinder</h1>
 
             <label for="RadiusTop"><b>RadiusTop</b></label>
@@ -45,10 +46,49 @@
             <label for="radialSegments"><b>radialSegments</b></label>
             <input type="text" placeholder="32" name="radialSegments" required>
 
-            <button type="submit" class="btn">Create Geometry</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            <button type="button" onclick="createGeometries('Cylinder')" class="btn">Create Geometry</button>
+            <button type="button" class="btn cancel" onclick="closeForm('myForm')">Close</button>
         </form>
     </div>
+
+    <!-- Cube -->
+    <div class="form-popup" id="myFormCube">
+        <form action="" class="form-container">
+            <h1>Cube</h1>
+
+            <label for="width"><b>Width</b></label>
+            <input type="text" placeholder="10" name="width" required>
+
+            <label for="heightCube"><b>Height</b></label>
+            <input type="text" placeholder="10" name="heightCube" required>
+
+            <label for="depthCube"><b>Depth</b></label>
+            <input type="text" placeholder="10" name="depthCube" required>
+
+            <button type="button" onclick="createGeometries('Cube')" class="btn">Create Geometry</button>
+            <button type="button" class="btn cancel" onclick="closeForm('myFormCube')">Close</button>
+        </form>
+    </div>
+
+    <!-- Cone -->
+    <div class="form-popup" id="myFormCone">
+        <form action="" class="form-container">
+            <h1>Cone</h1>
+
+            <label for="radiusCone"><b>Radius</b></label>
+            <input type="text" placeholder="10" name="radiusCone" required>
+
+            <label for="heightCone"><b>Height</b></label>
+            <input type="text" placeholder="10" name="heightCone" required>
+
+            <label for="radialSegmentsCone"><b>Radial Segments</b></label>
+            <input type="text" placeholder="10" name="radialSegmentsCone" required>
+
+            <button type="button" onclick="createGeometries('Cone')" class="btn">Create Geometry</button>
+            <button type="button" class="btn cancel" onclick="closeForm('myFormCone')">Close</button>
+        </form>
+    </div>
+    
 </body>
 
 </html>
