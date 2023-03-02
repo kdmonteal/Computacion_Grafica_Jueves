@@ -24,7 +24,7 @@ function start3dService() {
 
 function initScene() {
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x043eaa);
+    scene.background = new THREE.Color(0xE9E6C6); //0x043eaa
     camera = new THREE.PerspectiveCamera( 75,   // FOV (Fild of view)
                                         window.innerWidth / window.innerHeight, // ASPECT (Size of Screen)
                                         0.1,  // NEAR (Cerca)
@@ -66,9 +66,9 @@ function createGeometries(geometries) {
             scene.add( cylinder );
           break;
         case 'Cube':
-            const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+            const geometry = new THREE.BoxGeometry(document.getElementById('widthCube').value, document.getElementById('heightCube').value, document.getElementById('depthCube').value);
             const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 ,
-                                                            wireframe: true} );
+                                                            wireframe: false} );
             cube = new THREE.Mesh( geometry, material );
             scene.add( cube );
           break;
