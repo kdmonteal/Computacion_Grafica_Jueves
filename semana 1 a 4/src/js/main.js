@@ -54,7 +54,40 @@ function initScene() {
     const axesHelper = new THREE.AxesHelper( 5 );
     scene.add( axesHelper );
 }
+function createLight(typeLight) {
+    switch(typeLight) {
+        case 'AmbientLight':
+            const AmbientLight = new THREE.AmbientLight( 0x404040 ); // soft white light
+            scene.add( AmbientLight );
+          break;
+        case 'DirectionalLight':
+            // White directional light at half intensity shining from the top.
+            const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+            scene.add( directionalLight );
+          break;
+        case 'PointLight':
+            const PointLight = new THREE.PointLight( 0xff0000, 1, 100 );
+            PointLight.position.set( 50, 50, 50 );
+            scene.add( PointLight );
+          break;
+        case 'SpotLight': // pending
+            const spotLight = new THREE.SpotLight( 0xffffff );
+            spotLight.position.set( 100, 1000, 100 );
+            spotLight.map = new THREE.TextureLoader().load( url );
 
+            spotLight.castShadow = true;
+
+            spotLight.shadow.mapSize.width = 1024;
+            spotLight.shadow.mapSize.height = 1024;
+
+            spotLight.shadow.camera.near = 500;
+            spotLight.shadow.camera.far = 4000;
+            spotLight.shadow.camera.fov = 30;
+
+            scene.add( spotLight );
+          break;
+      }
+}
 function createGeometries(geometries) {
 
     switch(geometries) {
