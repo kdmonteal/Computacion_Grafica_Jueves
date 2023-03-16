@@ -61,12 +61,23 @@ function initScene() {
     scene.add( plane );
     plane.rotation.x = Math.PI / 2;
 
+    // Object Material: Standard
     const geometryCube = new THREE.BoxGeometry( 1, 1, 1 );
     const materialCube = new THREE.MeshStandardMaterial( {color: 0x00ff00} );
     const cube = new THREE.Mesh( geometryCube, materialCube );
     scene.add( cube );
     cube.position.y = 0.5;
-    cube.castShadow = true;
+
+    // Object Material: xxx
+    const geometryCube2 = new THREE.BoxGeometry( 1, 1, 1 );
+    const materialCube2 = new THREE.MeshPhongMaterial( {color: 0xff00ff,
+                                                        specular: 0xffffff} );
+    const cube2 = new THREE.Mesh( geometryCube2, materialCube2 );
+    scene.add( cube2 );
+    cube2.position.y = 0.5;
+    cube2.position.x = -2;
+
+
 }
 function createLight(typeLight) {
     switch(typeLight) {
