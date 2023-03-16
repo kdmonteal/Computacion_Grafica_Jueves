@@ -53,6 +53,20 @@ function initScene() {
     // Axes Helper
     const axesHelper = new THREE.AxesHelper( 5 );
     scene.add( axesHelper );
+
+    // Objeto Scene
+    const geometry = new THREE.PlaneGeometry( 102, 102 );
+    const material = new THREE.MeshStandardMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+    const plane = new THREE.Mesh( geometry, material );
+    scene.add( plane );
+    plane.rotation.x = Math.PI / 2;
+
+    const geometryCube = new THREE.BoxGeometry( 1, 1, 1 );
+    const materialCube = new THREE.MeshStandardMaterial( {color: 0x00ff00} );
+    const cube = new THREE.Mesh( geometryCube, materialCube );
+    scene.add( cube );
+    cube.position.y = 0.5;
+    cube.castShadow = true;
 }
 function createLight(typeLight) {
     switch(typeLight) {
@@ -66,9 +80,13 @@ function createLight(typeLight) {
             scene.add( directionalLight );
           break;
         case 'PointLight':
-            const PointLight = new THREE.PointLight( 0xff0000, 1, 100 );
-            PointLight.position.set( 50, 50, 50 );
+            const PointLight = new THREE.PointLight( 0xffffff, 1, 100 );
+            PointLight.position.set( 1, 2, 1 );
             scene.add( PointLight );
+
+            const sphereSize = 1;
+            const pointLightHelper = new THREE.PointLightHelper( PointLight, sphereSize );
+            scene.add( pointLightHelper );
           break;
         case 'SpotLight': // pending
             const spotLight = new THREE.SpotLight( 0xffffff );
