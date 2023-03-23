@@ -33,12 +33,13 @@ function initScene() {
 
     myCanvas = document.querySelector('.webgl');
     renderer = new THREE.WebGLRenderer({ canvas: myCanvas });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth-20, window.innerHeight-50);//window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
     // To make Controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-    camera.position.set(2, 4, 2);
+    camera.position.set(6, 13, 6);
+
     controls.update();
 
     // Create Grid
@@ -92,6 +93,8 @@ function initScene() {
     // scene.add( cube2 );
     // cube2.position.y = 0.5;
     // cube2.position.x = -2;
+
+    createLight('AmbientLight');
 }
 
 
@@ -284,8 +287,8 @@ function createMaterials() {
 }
 function createLight(typeLight) {
     switch (typeLight) {
-        case 'AmbientLight':
-            const AmbientLight = new THREE.AmbientLight(0x404040); // soft white light
+        case 'AmbientLight':    
+            const AmbientLight = new THREE.AmbientLight(0x404040,3); // soft white light
             scene.add(AmbientLight);
             break;
         case 'DirectionalLight':
@@ -371,6 +374,8 @@ function animate() {
     requestAnimationFrame(animate);
     controls.update();
 
+
+    console.log(camera.position);
     /*cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
 
