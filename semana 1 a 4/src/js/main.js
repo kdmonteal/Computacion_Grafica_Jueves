@@ -56,11 +56,11 @@ function initScene() {
     scene.add(axesHelper);
 
     // Objeto Scene
-    const geometry = new THREE.PlaneGeometry(102, 102);
-    const material = new THREE.MeshStandardMaterial({ color: 0xffff00, side: THREE.DoubleSide });
-    const plane = new THREE.Mesh(geometry, material);
-    scene.add(plane);
-    plane.rotation.x = Math.PI / 2;
+    // const geometry = new THREE.PlaneGeometry(102, 102);
+    // const material = new THREE.MeshStandardMaterial({ color: 0xffff00, side: THREE.DoubleSide });
+    // const plane = new THREE.Mesh(geometry, material);
+    // scene.add(plane);
+    // plane.rotation.x = Math.PI / 2;
 
     // Object Material: Standard
     const geometryCube = new THREE.BoxGeometry(1, 1, 1);
@@ -222,14 +222,52 @@ function createMaterials() {
 
 
     //11.) Box Texture
-    const geometry = new THREE.BoxGeometry( 3, 3, 3 );
+    const geometry = new THREE.BoxGeometry( 2, 2, 2 );
     const material = new THREE.MeshStandardMaterial( {color: 0xffffff,
-                                                    map: textureLoader.load('./src/img/face2.png')} );
+                                                    map: textureLoader.load('./src/img/uv_test_bw_1024.png')} );
     const cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
     cube.position.y = 1.5;
 
+    //12.) Box Texture By Face
+    const geometryFace = new THREE.BoxGeometry( 2, 2, 2 );
 
+    const materialTexture=[];
+    materialTexture.push( new THREE.MeshStandardMaterial({color: 0xffffff,
+                                                            side: THREE.BackSide, 
+                                                            map: new THREE.TextureLoader().load('./src/img/face1.jpg')}));
+    materialTexture.push( new THREE.MeshStandardMaterial({color: 0xffffff,
+                                                            side: THREE.BackSide, 
+                                                            map: new THREE.TextureLoader().load('./src/img/face2.png')}));
+    materialTexture.push( new THREE.MeshStandardMaterial({color: 0xffffff,
+                                                            side: THREE.BackSide, 
+                                                            map: new THREE.TextureLoader().load('./src/img/face3.jpg')}));
+    materialTexture.push( new THREE.MeshStandardMaterial({color: 0xffffff,
+                                                            side: THREE.BackSide, 
+                                                            map: new THREE.TextureLoader().load('./src/img/face4.jpg')}));
+    materialTexture.push( new THREE.MeshStandardMaterial({color: 0xffffff,
+                                                            side: THREE.BackSide, 
+                                                            map: new THREE.TextureLoader().load('./src/img/face5.png')}));
+    materialTexture.push( new THREE.MeshStandardMaterial({color: 0xffffff,
+                                                            side: THREE.BackSide, 
+                                                            map: new THREE.TextureLoader().load('./src/img/face6.jpg')}));
+         
+
+    const cubeFace = new THREE.Mesh( geometryFace, materialTexture );
+    scene.add( cubeFace );
+    cubeFace.position.y = 1.5;
+    cubeFace.position.x = 5;
+
+
+    /*
+    Blending Mode
+    THREE.NoBlending
+    THREE.NormalBlending
+    THREE.AdditiveBlending
+    THREE.SubtractiveBlending
+    THREE.MultiplyBlending
+    THREE.CustomBlending
+    */
 }
 function createLight(typeLight) {
     switch (typeLight) {
