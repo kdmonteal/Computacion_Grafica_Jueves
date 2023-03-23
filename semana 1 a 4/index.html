@@ -69,6 +69,16 @@
             <label for="depthCube"><b>Depth</b></label>
             <input type="text" placeholder="10" id="depthCube" name="depthCube" required>
 
+            <label for="myWireframe"><b>Wireframe</b></label>
+            <input type="text" placeholder="True/False" id="myWireframe" name="myWireframe" required>
+
+            <a>
+                <input type="checkbox" id="isWireframe" onchange=""> 
+                <label for="isWireframe">Wireframe</label>
+            </a>
+
+            <br><br>
+
             <button type="button" onclick="createGeometries('Cube')" class="btn">Create Geometry</button>
             <button type="button" class="btn cancel" onclick="closeForm('myFormCube')">Close</button>
         </form>

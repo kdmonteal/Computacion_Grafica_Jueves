@@ -65,19 +65,17 @@ function initScene() {
     const geometryCube = new THREE.BoxGeometry( 1, 1, 1 );
     const materialCube = new THREE.MeshStandardMaterial( {color: 0x00ff00} );
     const cube = new THREE.Mesh( geometryCube, materialCube );
-    scene.add( cube );
-    cube.position.y = 0.5;
+    // scene.add( cube );
+    // cube.position.y = 0.5;
 
     // Object Material: xxx
     const geometryCube2 = new THREE.BoxGeometry( 1, 1, 1 );
     const materialCube2 = new THREE.MeshPhongMaterial( {color: 0xff00ff,
                                                         specular: 0xffffff} );
     const cube2 = new THREE.Mesh( geometryCube2, materialCube2 );
-    scene.add( cube2 );
-    cube2.position.y = 0.5;
-    cube2.position.x = -2;
-
-
+    // scene.add( cube2 );
+    // cube2.position.y = 0.5;
+    // cube2.position.x = -2;
 }
 function createLight(typeLight) {
     switch(typeLight) {
@@ -128,11 +126,25 @@ function createGeometries(geometries) {
             scene.add( cylinder );
           break;
         case 'Cube':
+
+            var isWireframe = document.getElementById('isWireframe').checked;
+
+            var myNewWireframe = document.getElementById('myWireframe').value;
+            var boolWire = false;
+
+            if(myNewWireframe=='True'){
+                boolWire = true;
+            }else{
+                boolWire = false;
+            }
+
             const geometry = new THREE.BoxGeometry(document.getElementById('widthCube').value, document.getElementById('heightCube').value, document.getElementById('depthCube').value);
             const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 ,
-                                                            wireframe: false} );
+                                                            wireframe: boolWire} );
             cube = new THREE.Mesh( geometry, material );
             scene.add( cube );
+
+
           break;
         case 'Cone':
             const geometryCone = new THREE.ConeGeometry(1, 3, 10 );
