@@ -56,11 +56,24 @@ function initScene() {
     scene.add(axesHelper);
 
     // Objeto Scene
-    // const geometry = new THREE.PlaneGeometry(102, 102);
-    // const material = new THREE.MeshStandardMaterial({ color: 0xffff00, side: THREE.DoubleSide });
-    // const plane = new THREE.Mesh(geometry, material);
-    // scene.add(plane);
-    // plane.rotation.x = Math.PI / 2;
+    const textureLoader = new THREE.TextureLoader();
+    var texture = textureLoader.load('./src/img/lluvia.jpg', function (texture) {
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.offset.set(0, 0);
+        texture.repeat.set(1, 1);
+    });
+
+
+    const geometry = new THREE.PlaneGeometry(102, 80);
+    const material = new THREE.MeshStandardMaterial( {color: 0xffffff,
+                                                        side: THREE.DoubleSide,
+                                                        map: texture,
+                                                        blending: THREE.MultiplyBlending,
+                                                        transparent: true,
+                                                        depth: THREE.LessEqualDepth} ); //THREE.MultiplyBlending, THREE.NormalBlending, THREE.AdditiveBlending, THREE.SubtractiveBlending
+    const plane = new THREE.Mesh(geometry, material);
+    scene.add(plane);
+    plane.rotation.x = Math.PI / 2;
 
     // Object Material: Standard
     const geometryCube = new THREE.BoxGeometry(1, 1, 1);
