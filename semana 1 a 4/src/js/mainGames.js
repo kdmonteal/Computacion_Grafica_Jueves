@@ -13,6 +13,7 @@ var scene = null,    // The place
 // Call all functions that allow create 3D
 function start3dService() {
     initScene();        // To inicializate the project
+    createDashboard();
     animate();          // To represent frame by frame (Update)...
     window.addEventListener('resize', onWindowResize, false);
 }
@@ -44,12 +45,25 @@ function initScene() {
         divisions,
         0x000,      // Color Cruz 
         0xffffff); // Color de las cuadriculas
-    scene.add(gridHelper);
+      /* scene.add(gridHelper); */
 
     // Axes Helper
     const axesHelper = new THREE.AxesHelper(5);
     scene.add(axesHelper);
     createLight('AmbientLight');
+}
+
+function createDashboard(){
+ const geometry = new THREE.PlaneGeometry( 30, 30 );
+ const loader = new THREE.TextureLoader();
+ 
+
+ const material = new THREE.MeshBasicMaterial( {color: 0xffffff,
+    map: loader.load('../img/textura_parchis.jpg'),
+    side: THREE.DoubleSide} );
+ const plane = new THREE.Mesh( geometry, material );
+ plane.rotation.x= Math.PI/2;
+ scene.add( plane );
 }
 
 function createLight(typeLight) {
