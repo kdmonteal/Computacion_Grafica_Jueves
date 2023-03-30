@@ -16,6 +16,8 @@ function start3dService() {
     createDashboard();
     animate();          // To represent frame by frame (Update)...
     window.addEventListener('resize', onWindowResize, false);
+
+    createGLTF();
 }
 
 function initScene() {
@@ -68,6 +70,40 @@ function createDashboard(){
 
 function createGLTF() {
     const loader = new THREE.GLTFLoader();
+
+    const dracoLoader = new THREE.DRACOLoader();
+        dracoLoader.setDecoderPath( '../models/GLTF/pato/' );
+        loader.setDRACOLoader( dracoLoader );
+
+    // Load a glTF resource
+    loader.load(
+        // resource URL
+        '../models/gltf/pato/duck.gltf',
+        // called when the resource is loaded
+        function ( gltf ) {
+
+            scene.add( gltf.scene );
+
+            gltf.animations; // Array<THREE.AnimationClip>
+            gltf.scene; // THREE.Group
+            gltf.scenes; // Array<THREE.Group>
+            gltf.cameras; // Array<THREE.Camera>
+            gltf.asset; // Object
+
+        },
+        // called while loading is progressing
+        function ( xhr ) {
+
+            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+            console.log( 'An error happened' );
+
+        }
+    );
 }
 function createLight(typeLight) {
     switch (typeLight) {
