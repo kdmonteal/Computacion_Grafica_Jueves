@@ -90,6 +90,7 @@ function createGLTF() {
             gltf.cameras; // Array<THREE.Camera>
             gltf.asset; // Object
 
+            (gltf.scene).position.set(0,0,0);
         },
         // called while loading is progressing
         function ( xhr ) {
