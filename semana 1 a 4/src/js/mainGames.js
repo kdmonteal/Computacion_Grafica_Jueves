@@ -18,6 +18,7 @@ function start3dService() {
     window.addEventListener('resize', onWindowResize, false);
 
     createGLTF();
+    createObjMtl();
 }
 
 function initScene() {
@@ -68,6 +69,26 @@ function createDashboard(){
  scene.add( plane );
 }
 
+function createObjMtl(){
+    const loader = new THREE.OBJLoader();
+    const mtlLoader = new THREE.MTLLoader();
+
+    mtlLoader.setTexturePath('../models/OBJMTL/Guerrero/');
+    mtlLoader.setPath('../models/OBJMTL/Guerrero/');
+    mtlLoader.load('chr_knight.mtl', function (materials) {
+
+        materials.preload();
+
+        loader.setMaterials(materials);
+        loader.setPath('../models/OBJMTL/Guerrero/');
+        loader.load('chr_knight.obj', function (object) {
+              scene.add(object);
+              object.scale.set(3,3,3);
+              object.position.set(10,0,-10);
+        });
+    }); 
+}
+
 function createGLTF() {
     const loader = new THREE.GLTFLoader();
 
@@ -90,7 +111,8 @@ function createGLTF() {
             gltf.cameras; // Array<THREE.Camera>
             gltf.asset; // Object
 
-            (gltf.scene).position.set(0,0,0);
+            (gltf.scene).position.set(-10,0,-10);
+            (gltf.scene).scale.set(3,3,3);
         },
         // called while loading is progressing
         function ( xhr ) {
