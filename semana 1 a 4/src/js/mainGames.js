@@ -66,6 +66,9 @@ function createDashboard(){
  scene.add( plane );
 }
 
+function createGLTF() {
+    const loader = new THREE.GLTFLoader();
+}
 function createLight(typeLight) {
     switch (typeLight) {
         case 'AmbientLight':    

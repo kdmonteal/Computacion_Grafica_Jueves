@@ -13,10 +13,17 @@
     <link rel="stylesheet" href="../css/mainStyle.css">
     <!-- Basic definition of library (WebGL)-->
     <script src="../libs/three.js"></script>
+    <!-- Loader GLTF, OBJ Y MTL-->
+    <script src="../vendors/load/DRACOLoader.js"></script>
+    <script src="../vendors/load/GLTFLoader.js"></script>
+    <script src="../vendors/load/MTLLoader.js"></script>
+    <script src="../vendors/load/OBJLoader.js"></script>
     <!-- Interaction with mouse (Zoom in, out, drag, movement camera, others) -->
     <script src="../libs/OrbitControls.js"></script>
     <!-- My own file of edition and work with TREEJS -->
     <script src="../js/mainGames.js"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
+
 </head>
 
 <body onload="start3dService()">
@@ -33,7 +40,6 @@
         <a onclick="createLight('SpotLight')">SpotLight</a>
     </div>
 
-    <!-- Cylinder -->
     <div class="form-popup" id="myForm">
         <form action="" class="form-container">
             <h1>Cylinder</h1>
@@ -55,7 +61,7 @@
         </form>
     </div>
 
-    <!-- Cube -->
+   
     <div class="form-popup" id="myFormCube">
         <form action="" class="form-container">
             <h1>Cube</h1>
@@ -84,7 +90,7 @@
         </form>
     </div>
 
-    <!-- Cone -->
+    
     <div class="form-popup" id="myFormCone">
         <form action="" class="form-container">
             <h1>Cone</h1>
@@ -103,6 +109,15 @@
         </form>
     </div>
     
+    <model-viewer 
+    src ="../models/GLTF/dog/scene.gltf"
+    alt = "modelo"
+    background-color="#808080"
+    camera-controls
+    style="width: 500px; height: 500px; position: absolute;" >
+    </model-viewer>
 </body>
 
+<!--https://modelviewer.dev/
+    https://www.artstation.com/artwork/14LLYX-->
 </html>
