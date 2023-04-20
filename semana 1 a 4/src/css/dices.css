@@ -1,0 +1,30 @@
+.dicesBottom{
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-flow: column;
+    right: 0%;
+    bottom: 0%;
+    margin: 20px;
+
+    border-style: solid;
+    /* padding: 10px;
+    background-color: darkorange; */
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.swing {
+    /* animation: swing ease-in-out 1s infinite alternate; */
+    /* transform-origin: center -20px; */
+    /* float:left; */
+    /* box-shadow: 5px 5px 10px rgba(0,0,0,0.5); */
+}
+
+.build{
+    height: 83px;
+    /* left: 10%; */
+    margin-top: 22px;
+    cursor: pointer;
+}

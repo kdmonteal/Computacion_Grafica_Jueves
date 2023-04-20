@@ -19,12 +19,13 @@ function start3dService() {
 
     createGLTF();
     createLight('DirectionalLight');
-    
+
     // niña guerrera
     createObjMtl('../models/OBJMTL/Guerrero/','chr_knight',10,0,-10, 3);
     
     // dado
-    createObjMtl('../models/OBJMTL/Dado/','dice',0,0,0, 1);
+    createObjMtl('../models/OBJMTL/Dado/','dice',-2,0,0, 1);
+    createObjMtl('../models/OBJMTL/Dado/','dice',2,0,0, 1);
 
 }
 
@@ -201,4 +202,11 @@ function playSounds(whatSound) {
             //document.getElementById("myBackgroundSound").play();
             break;
     }
+
+    
+}
+
+function throwDices(){
+
+    alert("funcionando");
 }
