@@ -22,7 +22,6 @@
     <!-- Interaction with mouse (Zoom in, out, drag, movement camera, others) -->
     <script src="../libs/OrbitControls.js"></script>
     <!-- My own file of edition and work with TREEJS -->
-    <script src="../js/mainGames.js"></script>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
     <link rel="stylesheet" href="../css/dices.css">
 
@@ -39,16 +38,22 @@
 
     <div class="topnav">
         <a class="active" href="#home">Home</a>
+
+        <a id="minutes">00</a> 
+        <a>:</a>
+        <a id="seconds">00</a>
     </div>
 
     <div class="dicesBottom"> </div>
 
     <div class="dicesBottom">
-        <figure onclick="throwDices()">
+        <figure onclick="throwDices('rotate'); ">
             <img class="build" src="../img/Dados.png" alt="Tirar Dados">
         </figure>
 
     
     </div>
+    <script src="../js/mainGames.js"></script>
+
 </body>
 </html>

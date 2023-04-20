@@ -9,6 +9,8 @@ var scene = null,    // The place
     myCanvas = null, // To draw
     controls = null; // To Move
 
+var dados = [],
+    rotate = false;
 
 // Call all functions that allow create 3D
 function start3dService() {
@@ -21,11 +23,11 @@ function start3dService() {
     createLight('DirectionalLight');
 
     // niña guerrera
-    createObjMtl('../models/OBJMTL/Guerrero/','chr_knight',10,0,-10, 3);
-    
+    createObjMtl('../models/OBJMTL/Guerrero/', 'chr_knight', 10, 0, -10, 3);
+
     // dado
-    createObjMtl('../models/OBJMTL/Dado/','dice',-2,0,0, 1);
-    createObjMtl('../models/OBJMTL/Dado/','dice',2,0,0, 1);
+    createObjMtl('../models/OBJMTL/Dado/', 'dice', -2, 2, 0, 1, 0);
+    createObjMtl('../models/OBJMTL/Dado/', 'dice', 2, 2, 0, 1, 1);
 
 }
 
@@ -39,7 +41,7 @@ function initScene() {
 
     myCanvas = document.querySelector('.webgl');
     renderer = new THREE.WebGLRenderer({ canvas: myCanvas });
-    renderer.setSize(window.innerWidth-20, window.innerHeight-50);//window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth - 20, window.innerHeight - 50);//window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
     // To make Controls
@@ -56,7 +58,7 @@ function initScene() {
         divisions,
         0x000,      // Color Cruz 
         0xffffff); // Color de las cuadriculas
-      /* scene.add(gridHelper); */
+    /* scene.add(gridHelper); */
 
     // Axes Helper
     const axesHelper = new THREE.AxesHelper(5);
@@ -64,54 +66,57 @@ function initScene() {
     createLight('AmbientLight');
 }
 
-function createDashboard(){
- const geometry = new THREE.PlaneGeometry( 30, 30 );
- const loader = new THREE.TextureLoader();
- 
+function createDashboard() {
+    const geometry = new THREE.PlaneGeometry(30, 30);
+    const loader = new THREE.TextureLoader();
 
- const material = new THREE.MeshBasicMaterial( {color: 0xffffff,
-    map: loader.load('../img/textura_parchis.jpg'),
-    side: THREE.DoubleSide} );
- const plane = new THREE.Mesh( geometry, material );
- plane.rotation.x= Math.PI/2;
- scene.add( plane );
+
+    const material = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        map: loader.load('../img/textura_parchis.jpg'),
+        side: THREE.DoubleSide
+    });
+    const plane = new THREE.Mesh(geometry, material);
+    plane.rotation.x = Math.PI / 2;
+    scene.add(plane);
 }
 
-function createObjMtl(routeFolder, nameArchive, posx, posy, posz, scale){
+function createObjMtl(routeFolder, nameArchive, posx, posy, posz, scale, number) {
     const loader = new THREE.OBJLoader();
     const mtlLoader = new THREE.MTLLoader();
 
     mtlLoader.setTexturePath(routeFolder);
     mtlLoader.setPath(routeFolder);
-    mtlLoader.load(nameArchive+'.mtl', function (materials) {
+    mtlLoader.load(nameArchive + '.mtl', function (materials) {
 
         materials.preload();
 
         loader.setMaterials(materials);
         loader.setPath(routeFolder);
-        loader.load(nameArchive+'.obj', function (object) {
-              scene.add(object);
-              object.scale.set(scale,scale,scale);
-              object.position.set(posx,posy,posz);
+        loader.load(nameArchive + '.obj', function (object) {
+            dados[number] = object;
+            scene.add(object);
+            object.scale.set(scale, scale, scale);
+            object.position.set(posx, posy, posz);
         });
-    }); 
+    });
 }
 
 function createGLTF() {
     const loader = new THREE.GLTFLoader();
 
     const dracoLoader = new THREE.DRACOLoader();
-        dracoLoader.setDecoderPath( '../models/GLTF/pato/' );
-        loader.setDRACOLoader( dracoLoader );
+    dracoLoader.setDecoderPath('../models/GLTF/pato/');
+    loader.setDRACOLoader(dracoLoader);
 
     // Load a glTF resource
     loader.load(
         // resource URL
         '../models/gltf/pato/duck.gltf',
         // called when the resource is loaded
-        function ( gltf ) {
+        function (gltf) {
 
-            scene.add( gltf.scene );
+            scene.add(gltf.scene);
 
             gltf.animations; // Array<THREE.AnimationClip>
             gltf.scene; // THREE.Group
@@ -119,27 +124,27 @@ function createGLTF() {
             gltf.cameras; // Array<THREE.Camera>
             gltf.asset; // Object
 
-            (gltf.scene).position.set(-10,0,-10);
-            (gltf.scene).scale.set(3,3,3);
+            (gltf.scene).position.set(-10, 0, -10);
+            (gltf.scene).scale.set(3, 3, 3);
         },
         // called while loading is progressing
-        function ( xhr ) {
+        function (xhr) {
 
-            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 
         },
         // called when loading has errors
-        function ( error ) {
+        function (error) {
 
-            console.log( 'An error happened' );
+            console.log('An error happened');
 
         }
     );
 }
 function createLight(typeLight) {
     switch (typeLight) {
-        case 'AmbientLight':    
-            const AmbientLight = new THREE.AmbientLight(0x404040,3); // soft white light
+        case 'AmbientLight':
+            const AmbientLight = new THREE.AmbientLight(0x404040, 3); // soft white light
             scene.add(AmbientLight);
             break;
         case 'DirectionalLight':
@@ -180,8 +185,19 @@ function createLight(typeLight) {
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
-
+    
     renderer.render(scene, camera);
+    
+    if(rotate==true){
+        dados[0].rotation.x -= SPEED * 2;
+        dados[0].rotation.y -= SPEED;
+        dados[0].rotation.z -= SPEED * 3;
+
+        dados[1].rotation.x -= SPEED * 1;
+        dados[1].rotation.y -= SPEED;
+        dados[1].rotation.z -= SPEED * 2;
+    }
+
 }
 
 function onWindowResize() {
@@ -197,16 +213,45 @@ function playSounds(whatSound) {
         case 'rain':
             document.getElementById("myBackgroundSound").play();
             break;
-    
+
         case 'background':
             //document.getElementById("myBackgroundSound").play();
             break;
     }
 
-    
+
 }
 
-function throwDices(){
+var SPEED = 0.03;
+function throwDices(caseMovement) {
 
-    alert("funcionando");
+    switch (caseMovement) {
+        case 'rotate':
+            rotate = true;
+        break;
+    
+        case 'stop':
+            rotate = false;
+        break;
+    }
+}
+
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+setInterval(setTime, 1000);
+
+function setTime() {
+    ++totalSeconds;
+    secondsLabel.innerHTML = pad(totalSeconds % 60);
+    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+    var valString = val + "";
+    if (valString.length < 2) {
+        return "0" + valString;
+    } else {
+        return valString;
+    }
 }
