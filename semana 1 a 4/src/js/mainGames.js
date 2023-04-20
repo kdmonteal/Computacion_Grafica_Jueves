@@ -18,8 +18,14 @@ function start3dService() {
     window.addEventListener('resize', onWindowResize, false);
 
     createGLTF();
-    createObjMtl();
+    createLight('DirectionalLight');
     
+    // niña guerrera
+    createObjMtl('../models/OBJMTL/Guerrero/','chr_knight',10,0,-10, 3);
+    
+    // dado
+    createObjMtl('../models/OBJMTL/Dado/','dice',0,0,0, 1);
+
 }
 
 function initScene() {
@@ -70,22 +76,22 @@ function createDashboard(){
  scene.add( plane );
 }
 
-function createObjMtl(){
+function createObjMtl(routeFolder, nameArchive, posx, posy, posz, scale){
     const loader = new THREE.OBJLoader();
     const mtlLoader = new THREE.MTLLoader();
 
-    mtlLoader.setTexturePath('../models/OBJMTL/Guerrero/');
-    mtlLoader.setPath('../models/OBJMTL/Guerrero/');
-    mtlLoader.load('chr_knight.mtl', function (materials) {
+    mtlLoader.setTexturePath(routeFolder);
+    mtlLoader.setPath(routeFolder);
+    mtlLoader.load(nameArchive+'.mtl', function (materials) {
 
         materials.preload();
 
         loader.setMaterials(materials);
-        loader.setPath('../models/OBJMTL/Guerrero/');
-        loader.load('chr_knight.obj', function (object) {
+        loader.setPath(routeFolder);
+        loader.load(nameArchive+'.obj', function (object) {
               scene.add(object);
-              object.scale.set(3,3,3);
-              object.position.set(10,0,-10);
+              object.scale.set(scale,scale,scale);
+              object.position.set(posx,posy,posz);
         });
     }); 
 }
