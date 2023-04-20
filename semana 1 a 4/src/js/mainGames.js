@@ -19,6 +19,7 @@ function start3dService() {
 
     createGLTF();
     createObjMtl();
+    
 }
 
 function initScene() {
@@ -138,6 +139,8 @@ function createLight(typeLight) {
             // White directional light at half intensity shining from the top.
             const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
             scene.add(directionalLight);
+
+            playSounds('rain');
             break;
         case 'PointLight':
             const PointLight = new THREE.PointLight(0xffffff, 1, 100);
@@ -180,4 +183,16 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
 
     renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function playSounds(whatSound) {
+    switch (whatSound) {
+        case 'rain':
+            document.getElementById("myBackgroundSound").play();
+            break;
+    
+        case 'background':
+            //document.getElementById("myBackgroundSound").play();
+            break;
+    }
 }
