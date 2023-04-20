@@ -56,6 +56,10 @@ function initScene() {
         camera.position.set(posPlayers[0].x,posPlayers[0].y,posPlayers[0].z);
     else if (jugador=='blue')
         camera.position.set(posPlayers[2].x,posPlayers[2].y,posPlayers[2].z);
+    else if (jugador=='yellow')
+        camera.position.set(posPlayers[1].x,posPlayers[1].y,posPlayers[1].z);
+    else if (jugador=='green')
+        camera.position.set(posPlayers[3].x,posPlayers[3].y,posPlayers[3].z);
 
     controls.update();
 
