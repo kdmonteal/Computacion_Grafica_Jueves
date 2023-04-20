@@ -10,7 +10,12 @@ var scene = null,    // The place
     controls = null; // To Move
 
 var dados = [],
-    rotate = false;
+    rotate = false,
+    jugador = 'red',
+    posPlayers = [{ x: 17.298156763549287, y: 17.59827012753881, z: 0.10151787289657402},  // Red
+                  { x: -17.03050250551709, y: 16.04258871995021, z: -0.6035724405441485},  // Yellow
+                  { x: -0.024321219262030, y: 15.91870264199188, z: 18.7967995615866},     // Blue
+                  { x: -0.066898867944208, y: 17.59827012753881, z: -17.234319602002646}]; // Green
 
 // Call all functions that allow create 3D
 function start3dService() {
@@ -46,7 +51,11 @@ function initScene() {
 
     // To make Controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-    camera.position.set(6, 13, 6);
+
+    if(jugador=='red')
+        camera.position.set(posPlayers[0].x,posPlayers[0].y,posPlayers[0].z);
+    else if (jugador=='blue')
+        camera.position.set(posPlayers[2].x,posPlayers[2].y,posPlayers[2].z);
 
     controls.update();
 
@@ -77,7 +86,7 @@ function createDashboard() {
         side: THREE.DoubleSide
     });
     const plane = new THREE.Mesh(geometry, material);
-    plane.rotation.x = Math.PI / 2;
+    plane.rotation.x = (Math.PI / 180 * 90)*-1;
     scene.add(plane);
 }
 
@@ -151,8 +160,6 @@ function createLight(typeLight) {
             // White directional light at half intensity shining from the top.
             const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
             scene.add(directionalLight);
-
-            playSounds('rain');
             break;
         case 'PointLight':
             const PointLight = new THREE.PointLight(0xffffff, 1, 100);
@@ -197,7 +204,6 @@ function animate() {
         dados[1].rotation.y -= SPEED;
         dados[1].rotation.z -= SPEED * 2;
     }
-
 }
 
 function onWindowResize() {
@@ -236,10 +242,16 @@ function throwDices(caseMovement) {
     }
 }
 
+function go2Play() {
+    document.getElementById('blocker').style.display = 'none';
+    playSounds('rain');
+    setInterval(setTime, 1000);
+}
+
 var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
-setInterval(setTime, 1000);
+
 
 function setTime() {
     ++totalSeconds;

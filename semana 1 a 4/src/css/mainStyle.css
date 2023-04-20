@@ -103,3 +103,44 @@ body{
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
+
+  #blocker{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.80);
+    z-index: 1;
+}
+
+#lost{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(74, 4, 4, 0.8);
+}
+
+#instructions {
+    width: 100%;
+	height: 100%;
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	box-orient: horizontal;
+
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	box-pack: center;
+
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	box-align: center;
+
+	color: #ffffff;
+	text-align: center;
+
+	cursor: pointer;
+}
