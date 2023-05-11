@@ -1,0 +1,335 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#app {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1;
+}
+.gui{
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-flow: column;
+    right: 0%;
+    margin: 20px;
+
+    border-style: solid;
+    padding: 10px;
+    background-color: darkorange;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+.gui .vector span{
+    font-size: 120%;
+}
+.gui .vector input{
+    margin: 2px;
+    border-radius: 5px;
+    border: 1px solid rgba(133, 133, 133, 0.276);
+    padding: 5px;
+    font-size: 120%;
+    width: 60px;
+    text-align: center;
+}
+.gui .coolButton{
+    width: 100%;
+    background-color: white;
+    color: black;
+    padding: 5px 25px;
+    cursor: pointer;
+    text-align: center;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+/* Float four columns side by side */
+.column {
+    float: left;
+    width: 33%;
+    /* padding: 0 10px; */
+    padding: 5px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+    .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    }
+}
+
+.warningMssg{
+    align-content: left!important;
+    align-items: left;
+    text-align: center;
+    background-color: yellow;
+    margin-bottom: 10px;
+    color: black;
+    border-radius: 5px;
+    padding: 11px 0px;
+    /* width: 20%; */
+}
+
+.flat{
+    height: 91px;
+    margin-top: 13px;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
+.swing {
+    animation: swing ease-in-out 1s infinite alternate;
+    /* transform-origin: center -20px; */
+    float:left;
+    /* box-shadow: 5px 5px 10px rgba(0,0,0,0.5); */
+}
+
+.swing:after{
+    /* content: ''; */
+    position: absolute;  
+    width: 20px; height: 20px;  
+    border: 1px solid #999;
+    top: -10px; left: 50%;
+    z-index: 0;
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(45deg);
+}
+/* nail */
+.swing:before{
+    /* content: ''; */
+    position: absolute;
+    width: 5px; height: 5px;
+    top: -14px;left: 54%;
+    z-index: 5;
+    border-radius: 50% 50%;
+    background: #000;
+}
+ 
+@keyframes swing {
+    0% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
+}
+
+
+.quadrado {
+    width: 200px;
+    height: 200px;
+    background: orange;
+    animation: crescendo 1.5s alternate infinite ease-in;
+    margin: -5px;
+    opacity: 0.1;
+}
+
+@keyframes crescendo {
+    0%   {transform: scale(.8);}
+    100% {transform: scale(1.0);}
+}
+
+.footerStyle{
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+}
+
+.column {
+    float: left;
+    width: 49%;
+}
+  
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.logoUsb{
+    height: 64px;
+    margin-top: -8px;
+    margin-bottom: -16px;
+}
+.vertical { 
+    border-left: 3px solid orange;
+    height: 38px;
+    position: absolute;
+    left: 50%;
+} 
+.mssg{
+    position: absolute;
+    background-color: white;
+    padding: 17px;
+    margin: 26px;
+    width: 73%;
+    /* border: whitesmoke; */
+    border-radius: 15px;
+}
+
+#blocker{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*background-color: rgba(0,0,0); 0.80*/
+    background-image: url("../img/bck.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: 9;
+}
+
+#lost{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*background-color: rgba(0,0,0); 0.80*/
+    background-image: url("../img/gameOver.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: 5!important;
+}
+
+#instructions {
+    width: 100%;
+	height: 100%;
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	box-orient: horizontal;
+
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	box-pack: center;
+
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	box-align: center;
+
+	color: #ffffff;
+	text-align: center;
+
+	cursor: pointer;
+}
+
+#timer{
+    position: absolute;
+    bottom:5px;
+    left:0px;
+    width:100%;
+    z-index: 5;
+}
+
+.timertext {
+    font-size: 30px;
+    margin-left: 20px;
+    display: inline-block;
+    color: rgb(24, 20, 20);
+    z-index: 10000;
+
+}
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC);
+
+body {
+	font-family: 'Amatic SC', cursive;
+	background-color: #111111;
+	color: #cccccc;
+}
+
+p {
+	font-size: 3em;
+	display: table-cell; 
+	vertical-align: middle;
+	text-align: center;
+	opacity: 0;
+
+}
+
+.text{
+	top: 0; 
+	left: 0; 
+	width: 100%; 
+	height: 100%;
+	position: fixed; 
+	display: table;
+}
+
+.t1{
+	animation: t-animation 6s;
+}
+
+.t2{
+	animation: t-animation 6s;
+	animation-delay: 6s;
+}
+
+.end{
+	animation: end-animation 2s;
+	animation-delay: 12s;
+	animation-fill-mode: forwards; 
+}
+
+.flicker{
+	animation: flicker 10s infinite;
+}
+
+@keyframes t-animation {
+	0% {opacity: 0;}
+	30% {opacity: 1;}
+	70% {opacity: 1;}
+	100% {opacity: 0;}
+}
+
+@keyframes end-animation {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes flicker {
+	40.1% {left:0px;top:0px;}
+	40.2% {left:10px;top:8px;}
+	40.3% {left:0px;top:0px;}
+
+	90.1% {left:0px;top:0px;}
+	90.2% {left:-5px;top:3px;}
+	90.3% {left:0px;top:0px;}
+}
+.button {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 11px 54px;
+    text-align: center;
+    font-size: 28px;
+    margin: 4px 2px;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    opacity: 0;
+  }
+  
+  .button:hover {opacity: 0.6}
+  

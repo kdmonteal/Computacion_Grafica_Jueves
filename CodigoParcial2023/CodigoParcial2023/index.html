@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Computer Graphics - Parcial</title>
+    <link rel="icon" href="./img/usb.jpg">
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <!-- Add all for GUI -->
+    <script src="./src/libs/jquery-1.11.1.js"></script>
+    <script src="./src/libs/three.js"></script>
+    <script src="./src/libs/DAT.GUI.min.js"></script>
+    <script src="./src/libs/Stats.js"></script>
+    <!-- ////////////////-->
+    <script src="./vendors/three.js-master/build/three.min.js"></script>
+    <script src="./vendors/controls/OrbitControls.js"></script>
+    <script src="./vendors/load/DRACOLoader.js"></script>
+    <script src="./vendors/load/GLTFLoader.js"></script>
+    <script src="./vendors/load/OBJLoader.js"></script>
+    <script src="./vendors/load/MTLLoader.js"></script>
+    <script src="./vendors/controls/FirstPersonControls.js"></script>
+    <script src="./vendors/controls/PointerLockControls.js"></script>
+
+    <script src="./src/mov/FPSControls.js"></script>
+    <script src="./src/mov/pointerlock.js"></script>
+    <script src="./src/Sound.js"></script>
+    
+    <script src="./src/main.js"></script>
+</head>
+<body onload="start()">
+    <canvas id="app"></canvas>
+    <div id="blocker">
+        <div id="instructions">
+            <span onclick="go2Play()" style="font-size:36px">Click to play</span>
+            <br /><br />
+            Move: WASD<br/>
+            Jump: SPACE<br/>
+            Look: MOUSE
+        </div>
+    </div>
+
+    <div id="lost" style="display: none;">
+        <div id="instructions">
+            <span onclick="go2Play()" style="font-size:36px">Click to play</span>
+        </div>
+    </div>
+
+    
+    <div id="cointainerOthers" style="display: none;">
+        <div id="timer">
+            <span class="timertext">Timer -</span>  
+            <span class="timertext" id="minutes"></span>
+            <span class="timertext" id="break">:</span>
+            <span class="timertext" id="seconds"></span>
+        </div>
+        <div style="position: absolute;margin-top: 10px;background-color: white; z-index:5;">
+            <span class="timertext">Lives: </span>  
+            <span class="timertext" id="lives"></span>
+        </div>
+
+        <div style="position: absolute;margin-top: 65px;background-color: white; z-index:5;">
+            <span class="timertext">Points: </span>  
+            <span class="timertext" id="points">0</span>
+        </div>
+    </div>
+	<audio id="myAudio">
+		
+    </audio>
+    <audio id="endGame">
+		
+	</audio>
+    <audio id="myCoin">
+        <source src="./songs/coin.mp3" type="audio/mpeg">
+    </audio>
+	<script>
+		var x = document.getElementById("myAudio"); 
+        var y = document.getElementById("endGame");
+        var z = document.getElementById("myCoin");
+		function playAudio(k) { 
+            k.volume = 0.5;
+			k.play(); 
+        } 
+        function pauseAudio(k) { 
+			k.pause(); 
+		} 
+
+    </script>
+    
+   
+</body>
+</html>
