@@ -41,13 +41,10 @@
         </div>
     </div>
 
-    <div id="lost" style="display: none;">
-        <div id="instructions">
-            <span onclick="go2Play()" style="font-size:36px">Click to play</span>
-        </div>
-    </div>
+    <div id="lost" style="display: none;"></div>
 
-    
+    <div id="winner" style="display: none;"></div>
+
     <div id="cointainerOthers" style="display: none;">
         <div id="timer">
             <span class="timertext">Timer -</span>  
@@ -66,18 +63,23 @@
         </div>
     </div>
 	<audio id="myAudio">
-		
+        <source src="./songs/backgroundSound.mp3" type="audio/mpeg">
     </audio>
     <audio id="endGame">
-		
+        <source src="./songs/gameOverCut.mp3" type="audio/mpeg">
 	</audio>
     <audio id="myCoin">
         <source src="./songs/coin.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="winner">
+        <source src="./songs/win.mp3" type="audio/mpeg">
     </audio>
 	<script>
 		var x = document.getElementById("myAudio"); 
         var y = document.getElementById("endGame");
         var z = document.getElementById("myCoin");
+        var s = document.getElementById("winner");
+
 		function playAudio(k) { 
             k.volume = 0.5;
 			k.play(); 

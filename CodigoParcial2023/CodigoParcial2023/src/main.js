@@ -338,6 +338,24 @@ function collisionAnimate() {
     var directionVector = globalVertex.sub(MovingCube.position);
 
     var ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
+    var collisionResultsWorld = ray.intersectObjects(collidableMeshList);
+    if (collisionResultsWorld.length > 0 && collisionResultsWorld[0].distance < directionVector.length()) {
+
+      console.log('toco, '+ JSON.stringify(collisionResultsWorld[0].object.name));
+      document.getElementById("lives").innerHTML = lives;//'toco, '+ JSON.stringify(collisionResultsWorld[0].object.name);//points;
+      camera.position.set(posX, posY, posZ);
+      MovingCube.position.set(posX, posY, posZ);
+      lives --;
+      if (lives == 0) {
+        document.getElementById("lost").style.display = "block";
+        document.getElementById("cointainerOthers").style.display = "none";
+        pauseAudio(x);
+        playAudio(y);
+      }else{
+        document.getElementById("lives").innerHTML = lives;
+      }
+    }
+
     var collisionResults = ray.intersectObjects(collectibleMeshList);
     if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
 
@@ -346,14 +364,11 @@ function collisionAnimate() {
       //camera.position.set(posX, posY, posZ);
       //MovingCube.position.set(posX, posY, posZ);
       //lives --;
-
+      removeElement(JSON.stringify(collisionResults[0].object.name));
       points++;
       document.getElementById("points").innerHTML = points;
-
-      removeElement(JSON.stringify(collisionResults[0].object.name));
-      if (lives == 0) {
-        document.getElementById("lost").style.display = "block";
-        document.getElementById("cointainerOthers").style.display = "none";
+      if(points>=5){
+        document.getElementById("winner").style.display = "block";
         pauseAudio(x);
         playAudio(y);
       }
